@@ -4,7 +4,7 @@ openshift-nginx-python-2.7
 Este quickstart cria uma aplicação wsgi [python-2.7](https://github.com/openshift/openshift-community-cartridge-python-2.7),
 junto com um servidor nginx.
 
-Arquivos estáticos são servidos pelo nginx nos diretórios `$OPENSHIFT_DATA_DIR/static/static` e `$OPENSHIFT_DATA_DIR/static/media`.
+Arquivos estáticos são servidos pelo nginx nos diretórios `$OPENSHIFT_REPO_DIR/wsgi/static/` e `$OPENSHIFT_REPO_DIR/wsgi/static/media/`.
 
 O objetivo deste quickstart é criar um ambiente mínimo para rodar django com python-2.7 de forma transparente, permitindo que a aplicação
 execute no modo `DEBUG = False`. [Entenda por que isso é um problema.](https://docs.djangoproject.com/en/1.5/howto/static-files/)
@@ -54,6 +54,19 @@ $ git push
 ```
 
 Pronto, verifique seu app em http://wsgi-{namespace}.getup.io
+
+Django
+======
+
+O banco de dados default é o sqlite e será criado onde foi definido no settings.py
+
+O usuário admin será criado (caso não exista) pelo código no arquivo wsgi/apllication. Inicialmente o login e senha do admin foram definidos como admin e admin.
+
+A variável `install_requires` no arquivo setup.py lê as dependências do arquivo requirements.txt
+
+Os arquivos estáticos serão servidos pelo nginx (config/nginx.conf linhas 54 e 58)
+* MEDIA  -> $OPENSHIFT_REPO_DIR/wsgi/static/media/
+* STATIC -> $OPENSHIFT_REPO_DIR/wsgi/static/ 
 
 TODO
 ====

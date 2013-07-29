@@ -1,4 +1,5 @@
-from setuptools import setup
+import os
+from setuptools import setup, find_packages
 
 setup(name='YourAppName', version='1.0',
       description='OpenShift Python-2.7 Community Cartridge based application',
@@ -7,9 +8,10 @@ setup(name='YourAppName', version='1.0',
 
       #  Uncomment one or more lines below in the install_requires section
       #  for the specific client drivers/modules your application needs.
-      install_requires=['greenlet', 'gevent',
-                        #  'MySQL-python',
-                        #  'pymongo',
-                        #  'psycopg2',
-      ],
-     )
+      # Instalation setup
+      packages=find_packages(),
+      include_package_data=True,
+      install_requires=open(
+            '%swsgi/openshift/requirements.txt' % os.environ.get(
+                  'OPENSHIFT_REPO_DIR', PROJECT_ROOT)).readlines(),
+)

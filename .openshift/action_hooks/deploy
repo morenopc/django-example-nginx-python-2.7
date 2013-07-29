@@ -24,3 +24,16 @@ done
 
 echo Generating config: $OPENSHIFT_DATA_DIR/config/nginx.conf
 substitute_vars < $OPENSHIFT_REPO_DIR/config/nginx.conf > $OPENSHIFT_DATA_DIR/config/nginx.conf
+
+# Django configuration
+PYTHON="$OPENSHIFT_HOMEDIR"python-2.7/virtenv/bin/python
+
+echo "Executing '$PYTHON $OPENSHIFT_REPO_DIRwsgi/openshift/manage.py syncdb --noinput'"
+$PYTHON "$OPENSHIFT_REPO_DIR"wsgi/openshift/manage.py syncdb --noinput
+
+echo "Executing '$PYTHON $OPENSHIFT_REPO_DIRwsgi/openshift/manage.py collectstatic --noinput'"
+$PYTHON "$OPENSHIFT_REPO_DIR"wsgi/openshift/manage.py collectstatic --noinput
+
+echo "Executing 'ln -s $OPENSHIFT_HOMEDIRpython-2.7/repo/wsgi/openshift/media media'"
+cd "$OPENSHIFT_HOMEDIR"python-2.7/repo/wsgi/static/
+ln -s "$OPENSHIFT_HOMEDIR"python-2.7/repo/wsgi/openshift/openshift/media media

@@ -1,4 +1,16 @@
 *.py[cod]
+*.sw[po]
+*.log
+*.pot
+*.db
+*.bak
+*.orig
+*~
+
+# Only local
+local_settings.py
+venv/
+scripts/
 
 # C extensions
 *.so
