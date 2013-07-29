@@ -19,6 +19,6 @@ application = django.core.handlers.wsgi.WSGIHandler()
 # Create admin if it doesn't exist
 from django.contrib.auth.models import User
 try:
-  User.objects.create_superuser('admin', 'admin@mail.com', 'admin')
+  User.objects.create_superuser('admin', 'admin@mail.com.br', 'admin')
 except Exception, e:
   pass

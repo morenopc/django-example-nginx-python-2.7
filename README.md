@@ -68,6 +68,8 @@ Os arquivos estáticos serão servidos pelo nginx (config/nginx.conf linhas 54 e
 * MEDIA  -> $OPENSHIFT_REPO_DIR/wsgi/static/media/
 * STATIC -> $OPENSHIFT_REPO_DIR/wsgi/static/ 
 
+Utilize o script scripts/local.sh para configurar e baixar as dependências localmente e scripts/runserver.sh para rodar o servidor django local.
+
 TODO
 ====
 
